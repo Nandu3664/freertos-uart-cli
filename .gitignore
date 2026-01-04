@@ -1,0 +1,22 @@
+# Build output
+build/
+_deps/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.ninja
+.ninja_*
+
+# Compiled objects
+*.o
+*.obj
+*.elf
+*.exe
+*.bin
+*.map
+
+# OS junk
+.DS_Store
+Thumbs.db

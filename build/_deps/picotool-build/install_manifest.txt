@@ -1,7 +1,0 @@
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/picotool.exe
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/picotoolTargets.cmake
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/picotoolTargets-debug.cmake
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/picotoolConfig.cmake
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/picotoolConfigVersion.cmake
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/enc_bootloader.elf
-C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool/enc_bootloader_mbedtls.elf
