@@ -1,0 +1,2 @@
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool-build/enc_bootloader/CMakeFiles/edit_cache.dir
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/_deps/picotool-build/enc_bootloader/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,14 @@
+# Target labels
+ picotoolBuild
+# Source files and their labels
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/CMakeFiles/picotoolBuild
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/CMakeFiles/picotoolBuild.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/CMakeFiles/picotoolBuild-complete.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule
+C:/Users/Nandkishor/pico/freertos_uart_cli/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule
