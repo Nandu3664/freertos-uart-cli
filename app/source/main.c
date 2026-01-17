@@ -1,61 +1,90 @@
 
 
+#include "main.h"
 
-#include"main.h"
-/* UART FreeRTOS task */
-void uart_task(void *param)
+#define LED_PIN 20
+
+QueueHandle_t command_queue;
+
+/* Print CLI menu */
+void print_menu(void)
 {
+    uart_send(
+        "\r\n----------------------\r\n"
+        "Press 1 : LED ON\r\n"
+        "Press 0 : LED OFF\r\n"
+        "----------------------\r\n"
+    );
+}
+
+/* UART RX Task */
+void uart_rx_task(void *param)
+{
+    char ch;
+
+    uart_send("\r\nHello\r\n");
+    print_menu();
+    uart_send("Status: LED is OFF\r\n");
+
     while (1)
     {
-        if (cmd_ready)
+        if (xQueueReceive(uart_rx_queue, &ch, portMAX_DELAY))
         {
-            cmd_ready = false;
-            to_uppercase((char *)rx_buf);
-             
-            if (strcmp((char *)rx_buf, "ON") == 0)
-            {
-                uart_puts(UART_ID, "\r\nON\r\n");
-            }
-            else if (strcmp((char *)rx_buf, "OFF") == 0)
-            {
-                uart_puts(UART_ID, "\r\n FreeRTos based OFF\r\n");
-            }
-            else
-            {
-                uart_puts(UART_ID, "\r\nUnknown Command\r\n");
-            }
+            xQueueSend(command_queue, &ch, portMAX_DELAY);
         }
     }
 }
 
-
-
-
-
-int main(void)
+/* Command Processing Task */
+void command_task(void *param)
 {
-    uart_initiliaze();
-    
-    uart_puts(UART_ID, "\r\nType ON or OFF\r\n");
+    char cmd;
+    bool led_state = false;
 
-    /* Create UART task */
-    xTaskCreate(
-        uart_task,
-        "UART_Task",
-        512,
-        NULL,
-        2,
-        NULL
-    );
-
-    /* Start scheduler */
-    vTaskStartScheduler();
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    gpio_put(LED_PIN, 0);
 
     while (1)
     {
-        tight_loop_contents();
-    }
+        if (xQueueReceive(command_queue, &cmd, portMAX_DELAY))
+        {
+            if (cmd == '1')
+            {
+                led_state = true;
+                gpio_put(LED_PIN, 1);
+                uart_send("\r\nLED turned ON\r\n");
+            }
+            else if (cmd == '0')
+            {
+                led_state = false;
+                gpio_put(LED_PIN, 0);
+                uart_send("\r\nLED turned OFF\r\n");
+            }
+            else
+            {
+                uart_send("\r\nInvalid command\r\n");
+            }
 
-   
+            uart_send("Status: LED is ");
+            uart_send(led_state ? "ON\r\n" : "OFF\r\n");
+            print_menu();
+        }
+    }
+}
+
+int main(void)
+{
+    stdio_init_all();
+    uart_initiliaze();
+
+    command_queue = xQueueCreate(4, sizeof(char));
+
+    xTaskCreate(uart_rx_task, "UART_RX", 512, NULL, 2, NULL);
+    xTaskCreate(command_task, "CMD", 512, NULL, 1, NULL);
+
+    vTaskStartScheduler();
+
+    while (1);
 }
 
