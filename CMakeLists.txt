@@ -8,8 +8,17 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
+
 add_executable(uart_baremetal
-    src/main.c
+    app/source/main.c
+)
+
+target_sources(uart_baremetal PRIVATE
+    app/source/uart.c
+)
+target_include_directories(uart_baremetal PRIVATE
+    app/include
+    
 )
 
 target_link_libraries(uart_baremetal pico_stdlib)
